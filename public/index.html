@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Request Form</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+    <div class="form-container">
+        <header class="main-header">
+            <h1>Budget Request Form</h1>
+            <p>Submit your budget requests here.</p>
+        </header>
+    
+        <form id="budgetRequestForm">
+            <div class="form-section">
+                <h2>Basic Information</h2>
+                <div class="form-content">
+                    <div class="form-field">
+                        <label class="required" for="country">Country</label>
+                        <select id="country" required>
+                            <option value="">Select Country</option>
+                            <option value="Venezuela">Venezuela</option>
+                            <option value="Ecuador">Ecuador</option>
+                            <option value="Honduras">Honduras</option>
+                            <option value="Uruguay">Uruguay</option>
+                            <option value="Argentina">Argentina</option>
+                            <option value="Colombia">Colombia</option>
+                            <option value="Guatemala">Guatemala</option>
+                            <option value="El Salvador">El Salvador</option>
+                            <option value="Cuba">Cuba</option>
+                            <option value="Nicaragua">Nicaragua</option>
+                            <option value="Haiti">Haiti</option>
+                            <option value="Mexico">Mexico</option>
+                            <option value="Panama">Panama</option>
+                        </select>
+                    </div>
+    
+                    <div class="form-field">
+                        <label class="required" for="city">City</label>
+                        <input type="text" id="city" required>
+                    </div>
+    
+                    <div class="form-field">
+                        <label class="required" for="date">Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+    
+                    <div class="form-field">
+                        <label class="required" for="budgetMonth">Budget Month</label>
+                        <input type="month" id="budgetMonth" required>
+                    </div>
+    
+                    <div class="form-field">
+                        <label class="required" for="requestType">Request Type</label>
+                        <select id="requestType" required>
+                            <option value="Regular Budget">Regular Budget</option>
+                            <option value="Other">Other (please specify)</option>
+                        </select>
+                    </div>
+    
+                    <div id="otherRequestTypeDiv" class="form-field" style="display: none;">
+                        <label for="otherRequestType">Specify Request Type</label>
+                        <input type="text" id="otherRequestType" placeholder="Please specify">
+                    </div>
+    
+                    <div class="form-field">
+                        <label class="required" for="requestedBy">Requested By</label>
+                        <input type="text" id="requestedBy" required>
+                    </div>
+    
+                    <div class="form-field">
+                        <label class="required" for="approvedBy">Approved By</label>
+                        <input type="text" id="approvedBy" required>
+                    </div>
+                </div>
+            </div>
+            <!-- Rest of your form sections -->
+
+
+
+            <div class="form-section">
+                <h2>Utilities</h2>
+                <div class="form-group">
+                    <label for="rent">Local Rent:</label>
+                    <input type="number" id="rent" placeholder="US Dollar" required>
+
+                    <label for="electricity">Electricity:</label>
+                    <input type="number" id="electricity" placeholder="US Dollar" required>
+
+                    <label for="water">Water & Drinking Water:</label>
+                    <input type="number" id="water" placeholder="US Dollar" required>
+
+                    <label for="gas">Gas:</label>
+                    <input type="number" id="gas" placeholder="US Dollar" required>
+
+                    <label for="internet">Internet:</label>
+                    <input type="number" id="internet" placeholder="US Dollar" required>
+
+                    <label for="communication">Communication:</label>
+                    <input type="number" id="communication" placeholder="US Dollar" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Servant's Allowance</h2>
+                <div class="form-group">
+                    <label for="workersAllowance">Servant Allowance:</label>
+                    <input type="number" id="workersAllowance" placeholder="US Dollar" required>
+
+                    <label for="foodAllowance">Servant Food Allowance:</label>
+                    <input type="number" id="foodAllowance" placeholder="US Dollar" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>LKD Assistance</h2>
+                <div class="form-group">
+                    <label for="lkdMedical">LKD Medical:</label>
+                    <input type="number" id="lkdMedical" placeholder="US Dollar" required>
+
+                    <label for="lkdFinancial">LKD Financial:</label>
+                    <input type="number" id="lkdFinancial" placeholder="US Dollar" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Food</h2>
+                <div class="form-group">
+                    <label for="foodBudgetBrethren">Average Food Budget (Brethren):</label>
+                    <input type="number" id="foodBudgetBrethren" placeholder="US Dollar" required>
+
+                    <label for="foodExpenseBS">Average Food Expense (BS/Doktrina):</label>
+                    <input type="number" id="foodExpenseBS" placeholder="US Dollar" required>
+
+                    <label for="foodExpenseCOH">Remaning COH from previous (BS/Doktrina):</label>
+                    <input type="number" id="foodExpenseCOH" placeholder="US Dollar" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Transportation</h2>
+                <div class="form-group">
+                    <label for="transportIndividual">Transportation (Individual Expenses):</label>
+                    <input type="number" id="transportIndividual" placeholder="US Dollar" required>
+
+                    <label for="transportBS">Transportation (BS/Doktrina):</label>
+                    <input type="number" id="transportBS" placeholder="US Dollar" required>
+
+                    <label for="transportCOH">Remaning COH from previous (BS/Doktrina):</label>
+                    <input type="number" id="transportCOH" placeholder="US Dollar" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Maintenance</h2>
+                <div id="maintenanceContainer">
+                    <div class="input-group">
+                        <input type="text" class="maintenance-desc" placeholder="Description" >
+                        <input type="number" class="maintenance-amount" placeholder="US Dollar" >
+                        <button type="button" class="remove-btn" onclick="removeInput(this)">X</button>
+                    </div>
+                </div>
+                <button type="button" onclick="addMaintenanceInput()" class="add-maintenance">
+                    + Add Maintenance Item
+                </button>
+            </div>
+
+            <div class="form-section">
+                <h2>Other/Miscellaneous</h2>
+                <div id="miscContainer">
+                    <div class="input-group">
+                        <input type="text" class="misc-desc" placeholder="Description" >
+                        <input type="number" class="misc-amount" placeholder="US Dollar" >
+                        <button type="button" class="remove-btn" onclick="removeInput(this)">X</button>
+                    </div>
+                </div>
+                <button type="button" onclick="addMiscInput()" class="add-misc">
+                    + Add Miscellaneous Item
+                </button>
+            </div>
+
+            <div class="form-section">
+                <h2>Notes</h2>
+                <textarea id="notes" rows="4" placeholder="Additional notes..."></textarea>
+            </div>
+
+            <div class="form-section summary-section">
+                <h2 style="color: rgb(255, 255, 255);">Summary</h2>
+                <div id="summaryContent"></div>
+                <h3>Grand Total: $<span id="grandTotal">0.00</span></h3>
+            </div>
+
+            <div class="action-buttons">
+                <button type="button" onclick="generatePDF()" class="pdf-button">
+                    Save as PDF
+                </button>
+                <button type="submit" class="submit-button">
+                    Submit to Google Sheets
+                </button>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
